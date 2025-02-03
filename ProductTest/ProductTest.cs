@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Ecommerce_Assignment2_Group4;
@@ -12,7 +13,7 @@ namespace ProductTest
 	public class ProductTest
     {
 		//Test Case For	Product ID
-		//Created by : Sahil Halwawala
+		//Created by : Sahil Halwawala(8909403)
 
 		//Test 1 : Check if the Product ID is valid
 		[Test]
@@ -59,10 +60,8 @@ namespace ProductTest
 			Assert.That(expected, Is.EqualTo(actual));
 		}
 
-
-
 		//Test Case For Product Name 
-		//Created by : Sahil Halwawala
+		//Created by : Sahil Halwawala (8909493)
 
 		//Test 4 : Check if the Stock Amount is positive
 		[Test]
@@ -116,7 +115,7 @@ namespace ProductTest
 		}
 
         //Test Case For Item Price
-        //Created by : Nisarg Khyali
+        //Created by : Nisarg Khyali(8910019)
 
         //Test 7 : Check if the item price is null
         [Test]
@@ -164,8 +163,6 @@ namespace ProductTest
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
         }
-
-
 
         //Test Case For Product Name 
         //Created by : Nisarg Khyali (8910019)
@@ -215,5 +212,100 @@ namespace ProductTest
             Assert.That(expected, Is.EqualTo(actual));
         }
 
+        //TestCase for IncreaseStockPrice and DecreaseStockPrice
+        //Created by : Maranata Netserab (89228473)
+
+        //Test 13 : Check if the Stock Amount is Increasing and returning the valid passed test case
+        [Test]
+        public void IncreaseStockAmount_InputIncreaseStockAmount_IncreaseStockAmount()
+        {
+            int amount = 10;
+            int StockAmount = 100;
+            int increaseStock = 110;
+            //Act & Arrange
+
+            Product product = new Product(9, "Test Product", 100, 110);
+
+            string expected = "Valid Increase Stock Amount";
+            string actual = Product.ValidateIncreaseStockAmount(amount, StockAmount);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 14 : Check if the Stock Amount is Decreasing and returning the valid passed test case
+        [Test]
+        public void DecreaseStockAmount_InputDecreaseStockAmount_DecreaseStockAmount()
+        {
+            int amount = 10;
+            int StockAmount = 100;
+            //Act & Arrange
+            Product product = new Product(9, "Test Product", 100, 10);
+            string expected = "Valid Decrease Stock Amount";
+            string actual = Product.ValidateDecreaseStockAmount(amount, StockAmount);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 15 : Check if the increased stock amount is in the range of 7 to 700000
+        [Test]
+
+        public void IncreaseStockAmount_InputIncreaseStockAmount_IncreaseStockAmountInRange()
+        {
+            int amount = 1000;
+            int StockAmount = 10000;
+            //Act & Arrange
+            Product product = new Product(9, "Test Product", 100, 10000);
+            string expected = "Valid Increase Stock Amount";
+            string actual = Product.ValidateIncreaseStockAmount(amount, StockAmount);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 16 : Check if the decreased stock amount is in the range of 7 to 700000
+        [Test]
+
+        public void DecreaseStockAmount_InputDecreaseStockAmount_DecreaseStockAmountInRange()
+        {
+            int amount = 100;
+            int StockAmount = 1000;
+            //Act & Arrange
+            Product product = new Product(9, "Test Product", 100, 900);
+            string expected = "Valid Decrease Stock Amount";
+            string actual = Product.ValidateDecreaseStockAmount(amount, StockAmount);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 17 : Check if the increased stock amount is less than 0
+
+        [Test]
+        public void IncreaseStockAmount_InputIncreaseStockAmount_IncreaseStockAmountLessThanZero()
+        {
+            int amount = -1000;
+            int StockAmount = 100;
+            int increaseStock = -900;
+            //Act & Arrange
+            Product product = new Product(9, "Test Product", 100, -900);
+            string expected = "Invalid Increase Stock Amount";
+            string actual = Product.ValidateIncreaseStockAmount(increaseStock, amount);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 18 : Check if the decreased stock amount is less than 0
+        [Test]
+        public void DecreaseStockAmount_InputDecreaseStockAmount_DecreaseStockAmountLessThanZero()
+        {
+            int amount = -300;
+            int StockAmount = 100;
+            int decreaseStock = -200;
+            //Act & Arrange
+            Product product = new Product(9, "Test Product", 100, -200);
+            string expected = "Invalid Decrease Stock Amount";
+            string actual = Product.ValidateDecreaseStockAmount(amount, decreaseStock);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
     }
 }
