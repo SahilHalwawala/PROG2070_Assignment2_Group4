@@ -115,5 +115,105 @@ namespace ProductTest
 			Assert.That(expected, Is.EqualTo(actual));
 		}
 
-	}
+        //Test Case For Item Price
+        //Created by : Nisarg Khyali
+
+        //Test 7 : Check if the item price is null
+        [Test]
+        public void ItemPrice_InputNullItemPrice_ItemPriceIsNull()
+
+        {
+            //Act & Arrange
+            int nullItemPrice = 0;
+            Product product = new Product(8, "Test Product", 100, nullItemPrice);
+
+            string expected = "Invalid item price";
+            string actual = Product.ValiditemPrice(nullItemPrice);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 8 : Check if the item price is in range of 7 to 7000
+        [Test]
+        public void ItemPrice_InputRangeItemPrice_ItemPriceIsInRange()
+        {
+            int itemPrice = 100;
+            //Act & Arrange
+            Product product = new Product(8, "Test Product", itemPrice, 10);
+
+            string expected = "Valid item price";
+            string actual = Product.ValiditemPrice(itemPrice);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 9 : Check if the item price is out of range
+        [Test]
+        public void ItemPrice_InputOutOfRangeItemPrice_ItemPriceIsInOutOfRange()
+        {
+            int itemPrice = 1;
+
+            //Act & Arrange
+            Product product = new Product(8, "Test Product", itemPrice, 0);
+
+            string expected = "Invalid item price";
+            string actual = Product.ValiditemPrice(itemPrice);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+
+
+        //Test Case For Product Name 
+        //Created by : Nisarg Khyali (8910019)
+
+        //Test 10 : Check if Product Name is valid 
+        [Test]
+
+        public void ProductName_InputProductName_ProductNameValid()
+        {
+            string ProdName = "XYZ Test";
+            //Act & Arrange
+            Product product = new Product(9, ProdName, 100, 100);
+
+            string expected = "This is a valid Product Name";
+            string actual = Product.ValidProdName(ProdName);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 11 : Check if Product Name is  null
+        [Test]
+        public void ProductName_InputNullProductName_ProductNameIsNull()
+        {
+            string ProdName = "";
+            //Act & Arrange
+            Product product = new Product(9, ProdName, 100, 100);
+
+            string expected = "Please Enter a Valid Name as the product name cannot be null";
+            string actual = Product.ValidProdName(ProdName);
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        //Test 12 : Check if Product Name is string
+        [Test]
+        public void ProductName_InputStringProductName_ProductNameIsString()
+        {
+            string ProdName = "String";
+            //Act & Arrange
+            Product product = new Product(9, ProdName, 100, 100);
+
+            string expected = "This is a valid Product Name";
+            string actual = Product.ValidProdName(ProdName);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+    }
 }

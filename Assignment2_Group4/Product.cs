@@ -76,6 +76,41 @@ namespace Ecommerce_Assignment2_Group4
 			}
 		}
 
+        public void IncreaseStockPrice(int amount, int StockAmount)
+        {
+            StockAmount += amount;
 
-	}
+        }
+
+        public static string ValidateIncreaseStockAmount(int increaseStock, int amount)
+        {
+            if (increaseStock >= 7 && increaseStock <= 7000)
+            {
+                return "Valid Increase Stock Amount";
+            }
+            else
+            {
+                return "Invalid Increase Stock Amount";
+            }
+        }
+
+
+        public void DecreaseStockAmount(int amount, int StockAmount)
+        {
+            StockAmount -= amount;
+        }
+
+        public static string ValidateDecreaseStockAmount(int amount, int decreaseStock)
+        {
+            if (decreaseStock >= 7 && decreaseStock <= 7000)
+            {
+                return "Valid Decrease Stock Amount";
+            }
+            else
+            {
+                return "Invalid Decrease Stock Amount";
+            }
+        }
+
+    }
 }
